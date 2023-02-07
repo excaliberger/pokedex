@@ -1,0 +1,4 @@
+.pokedexMasterListContainer {
+    overflow: auto;
+    display: flex;
+}
