@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {filterPokesByType, filterPokesByWeakness, getPokemonStats } from "../helpers/pokedex.helpers";
+import { filterPokesByType, filterPokesByWeakness, getPokemonStats } from "../helpers/pokedex.helpers";
 
 
 function MasterList(props) {

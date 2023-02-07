@@ -1,4 +1,4 @@
-import { list, setList, onSubmit, searchPokes, setSearchPokes } from './MasterList'
+import { list, setList } from './MasterList'
 import { useEffect, useState } from 'react';
 
 
@@ -11,7 +11,7 @@ function SearchCriteria(props) {
         console.log("hello");
         console.log(searchPokes);
         let newList = [...list, searchPokes];
-        MasterList.setList(newList);
+        setList(newList);
       }
 
     return (

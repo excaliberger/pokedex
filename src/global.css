@@ -1,4 +1,15 @@
 .pokedexMasterListContainer {
     overflow: auto;
     display: flex;
+    background-color: blue;
+}
+
+
+#searchCriteriaContainer {
+    background-color: red;
+}
+
+#displayFlex {
+    display: flex;
+    flex-direction: row;
 }

@@ -4,8 +4,8 @@ export function filterPokesByType(list, type) {
   }
 
 export function filterPokesByWeakness(list, weakness) {
-if (type) return list.filter((pokemon) => pokemon.weakness == weakness);
-else return list;
+    if (weakness) return list.filter((pokemon) => pokemon.weakness == weakness);
+    else return list;
 }
 
 export function getPokemonStats(list) {
