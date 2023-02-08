@@ -1,36 +1,20 @@
 import { useEffect, useState } from "react";
 import { filterPokesByType, filterPokesByWeakness, getPokemonStats } from "../helpers/pokedex.helpers";
+import Panels from "./Panels";
 
 
-function MasterList(props) {
+function MasterList({ list }) {
 
-    let [list, setList] = useState([]);
-
-    let { id, num, name, img, type } = getPokemonStats(filterPokesByType(), filterPokesByWeakness());
-
-    useEffect(() => {
-        fetchPokes();
-    })
-
-    const fetchPokes = () => {
-        fetch(
-            `https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json`,
-            { mode: "cors" }
-        )
-        .then((res) => res.json())
-        .then((pokemon) => {
-            setList(pokemon);
-        }) 
-        .catch ((err) => {console.error(err)})
-    }
-
-    function renderList() {
-        return list.map((pokemon) => {
-            return (<li key={id}>
-                        {name}
-                    </li>)
+    function renderList(list) {
+        return list.pokemon.map((pokemon) => {
+            return (
+                <li key={pokemon.id}>
+                    {pokemon.name}
+                </li>);
         })
     }; 
+    
+    console.log(list);
 
     return (
         <div>
