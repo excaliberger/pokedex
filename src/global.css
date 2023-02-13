@@ -1,15 +1,46 @@
-.pokedexMasterListContainer {
+#pokedexMasterListContainer {
     overflow: auto;
+    height: 900px;
     display: flex;
     background-color: blue;
 }
 
+.masterListImage {
+    width: 150px;
+    display: flex;
+}
+
+.evoPadding {
+    padding-right: 10px;
+}
 
 #searchCriteriaContainer {
     background-color: red;
 }
 
-#displayFlex {
+.displayFlex {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
 }
+
+.flexStart {
+    display: flex;
+    align-self: flex-start !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.primaryInfoPadding {
+    padding-left: 20px;
+}
+
+.panel {
+    width: 480px;
+    margin: 10px 10px 10px -33px;
+    padding: 5px 0px 5px 20px;
+    background-color: pink;
+}
+

@@ -3,7 +3,6 @@ import './App.css';
 import './global.css'
 // import SearchCriteria from './Components/SearchCriteria';
 import MasterList from './Components/MasterList';
-import DetailWindow from './Components/DetailWindow';
 import { useEffect, useState } from 'react';
 import { getPokemonStats, filterPokesByType, filterPokesByWeakness} from './helpers/pokedex.helpers'
 
@@ -38,16 +37,17 @@ function App(props) {
             <SearchCriteria />
         </div>
     </div> */}
-    <div id="displayFlex">
+    <div className="displayFlex">
         <div id='pokemonMasterListContainer'>
             <MasterList list={list} />
         </div>
-        {/* <div id='detailWindowContainer'>
-            <DetailWindow />
-        </div>*/}
+
     </div> 
     </div>
   );
 }
 
 export default App;
+
+
+
