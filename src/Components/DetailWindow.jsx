@@ -2,55 +2,186 @@ import { useState, useEffect } from 'react';
 import { list } from './MasterList';
 
 
-function DetailWindow ({img, weaknesses, name, type, 
+function DetailWindow ({setStateAndDisplayDetails, img, weaknesses, name, type, 
 avg_spawns, candy, candy_count, egg, height, id, multipliers, 
-spawn_chance, spawn_time, weight, next_evolution}) {
+spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
+
+    function displayWeaknesses() {
+        return weaknesses.join(", ")
+    }
+
+    function displayType() {
+        return type.join(" / ")
+    }
+
+    function displayPrevEvolutions() {
+        console.log("full object", next_evolution);
+        return prev_evolution && prev_evolution.map((evolution) => {
+            let evoIcon = require(`../img/${evolution.num}.png`)
+            return (
+                <div onClick={() => {setStateAndDisplayDetails(evolution.id)}} className='evoPadding'>
+                    <img src={evoIcon} /><br/>
+                    <p>{evolution.name}</p>
+                </div>
+            )
+        })
+    }
 
 
     function displayNextEvolutions() {
         console.log("full object", next_evolution);
         return next_evolution && next_evolution.map((evolution) => {
+            let evoIcon = require(`../img/${evolution.num}.png`)
             return (
-                <div className='evoPadding'>
-                    <p>
-                        {evolution.num}<br/>
-                        {evolution.name}
-                    </p>
+                <div onClick={() => {setStateAndDisplayDetails(evolution)}} className='evoPadding'>
+                    <img src={evoIcon} /><br/>
+                     <p>{evolution.name}</p>
                 </div>
             )
-            })
-        }
+        })
+    }
 
     return (
-        <div>
-            <div className='displayFlex flexStart'>
+        <div className='flexStart' id='detailWindowContainer'>
+            <div>
                 <div>
                     <img src={img} />
                 </div>
                 <div>
-                    <p>Name: {name}</p>
-                    <p>height: {height}</p>
-                    <p>weight: {weight}</p>
-                    <p>type: {type}</p>
-                    <p>weaknesses: {weaknesses}</p>
+                    <table>
+                        <tr>
+                            <td>
+                                <p>name:</p>
+                            </td>
+                            <td>
+                                <p>{name}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>height:</p>
+                            </td>
+                            <td>
+                                <p>{height}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>weight:</p>
+                            </td>
+                            <td>
+                                <p>{weight}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>type:</p>
+                            </td>
+                            <td>
+                                <p>{displayType()}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>weaknesses:</p>
+                            </td>
+                            <td>
+                                <p>{displayWeaknesses()}</p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div className='displayFlex flexStart'>
-                <div>
-                    <p>average spawns: {avg_spawns}</p>
-                    <p>candy: {candy}</p>
-                    <p>candy count: {candy_count}</p>
-                    <p>egg: {egg}</p>
-                </div>
-                    <div>
-                        <p>multipliers: {multipliers}</p>
-                        <p>spawn chance: {spawn_chance}</p>
-                        <p>spawn time: {spawn_time}</p>
-                        <div className='displayFlex'>
+            <div className='detailWindowPadding'>
+                <table>
+                    <tr>
+                        <td>
+                            <p>average spawns:</p>
+                        </td>
+                        <td>
+                            <p>{avg_spawns}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>candy:</p>
+                        </td>
+                        <td>
+                            <p>{candy}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>candy count:</p>
+                        </td>
+                        <td>
+                            <p>{candy_count}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>egg:</p>
+                        </td>
+                        <td>
+                            <p>{egg}</p>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <p>previous evolution:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className='displayFlex'>
+                            {displayPrevEvolutions()}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <div className='displayFlex'>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <p>multipliers:</p>
+                        </td>
+                        <td>
+                            <p>{multipliers}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spawn chance:</p>
+                        </td>
+                        <td>
+                            <p>{spawn_chance}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spawn time:</p>
+                        </td>
+                        <td>
+                            <p>{spawn_time}</p>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <p>next evolution:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className='displayFlex'>
                             {displayNextEvolutions()}
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
+        </div>
         </div>
     )
 }

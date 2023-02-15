@@ -14,12 +14,13 @@ function MasterList({ list }) {
     // })
 
     function setStateOnClick(singlePokemon) {
+        console.log(list);
         setSelectedPokemon(singlePokemon);
     }
 
-    function setStateAndDisplayDetails(singlePokemon) {
-        setStateOnClick(singlePokemon);
-        displayDetails(selectedPokemon);
+    function setStateAndDisplayDetails(pokemonIndex) {
+        setStateOnClick(list.pokemon[pokemonIndex]);
+        displayDetails(list.pokemon[pokemonIndex]);
     }
 
     function displayDetails(singlePokemon) {
@@ -27,7 +28,8 @@ function MasterList({ list }) {
         return (
                 <div className="primaryInfoPadding">
                     <DetailWindow 
-                    {...singlePokemon}
+                        {...singlePokemon}
+                        setStateAndDisplayDetails={setStateAndDisplayDetails}
                     />
                 </div>
 
@@ -36,9 +38,8 @@ function MasterList({ list }) {
     
     function renderList(list) {
         return list && list.pokemon && list.pokemon.map((singlePokemon) => {
-            
             return (
-                <div className="panel" onClick={() => setStateAndDisplayDetails(singlePokemon)} > 
+                <div className="panel" onClick={() => setStateAndDisplayDetails(singlePokemon.id-1)} > 
                     <li key={singlePokemon.id}>
                         <Panels img={singlePokemon.img} weaknesses={singlePokemon.weaknesses} name={singlePokemon.name} type={singlePokemon.type} num={singlePokemon.num} />
                     </li>
@@ -48,13 +49,13 @@ function MasterList({ list }) {
     }; 
 
     return (
-        <div className="displayFlex">
+        <div className="alignCenter">
             <div id="pokedexMasterListContainer">
                 <ul>
                     {renderList(list)}
                 </ul>
             </div>
-            <div className="flexStart">
+            <div className="flexStart" id="detailWindowContainer">
                 {displayDetails(selectedPokemon)}
             </div>
         </div>)
