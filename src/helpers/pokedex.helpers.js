@@ -11,8 +11,6 @@ export function filterPokesByWeakness(list, weakness) {
 export function getListOf(list, prop) {
   let alltypes=[]
   list.pokemon.forEach((item) => {
-    // fire, fire,water,ground .....
-    // console.log(...item.type)
     alltypes.push(...item.type)
   })
   return [...new Set(alltypes)]
