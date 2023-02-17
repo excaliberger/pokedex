@@ -19,7 +19,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
         return prev_evolution && prev_evolution.map((evolution) => {
             let evoIcon = require(`../img/${evolution.num}.png`)
             return (
-                <div onClick={() => {setStateAndDisplayDetails(evolution.id)}} className='evoPadding'>
+                <div key={evolution.num} onClick={() => {setStateAndDisplayDetails(Number(evolution.num)-1)}} className='evoPadding'>
                     <img src={evoIcon} /><br/>
                     <p>{evolution.name}</p>
                 </div>
@@ -33,7 +33,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
         return next_evolution && next_evolution.map((evolution) => {
             let evoIcon = require(`../img/${evolution.num}.png`)
             return (
-                <div onClick={() => {setStateAndDisplayDetails(evolution)}} className='evoPadding'>
+                <div key={evolution.num} onClick={() => {setStateAndDisplayDetails(Number(evolution.num)-1)}} className='evoPadding'>
                     <img src={evoIcon} /><br/>
                      <p>{evolution.name}</p>
                 </div>
@@ -49,6 +49,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                 </div>
                 <div>
                     <table>
+                        <tbody>
                         <tr>
                             <td>
                                 <p>name:</p>
@@ -89,11 +90,13 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                                 <p>{displayWeaknesses()}</p>
                             </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
             <div className='detailWindowPadding'>
                 <table>
+                    <tbody>
                     <tr>
                         <td>
                             <p>average spawns:</p>
@@ -126,8 +129,10 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                             <p>{egg}</p>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
                 <table>
+                    <tbody>
                     <tr>
                         <td>
                             <p>previous evolution:</p>
@@ -138,47 +143,52 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                             {displayPrevEvolutions()}
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         <div className='displayFlex'>
             <div>
                 <table>
-                    <tr>
-                        <td>
-                            <p>multipliers:</p>
-                        </td>
-                        <td>
-                            <p>{multipliers}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>spawn chance:</p>
-                        </td>
-                        <td>
-                            <p>{spawn_chance}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>spawn time:</p>
-                        </td>
-                        <td>
-                            <p>{spawn_time}</p>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>multipliers:</p>
+                            </td>
+                            <td>
+                                <p>{multipliers}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>spawn chance:</p>
+                            </td>
+                            <td>
+                                <p>{spawn_chance}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>spawn time:</p>
+                            </td>
+                            <td>
+                                <p>{spawn_time}</p>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <table>
-                    <tr>
-                        <td>
-                            <p>next evolution:</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='displayFlex'>
-                            {displayNextEvolutions()}
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>next evolution:</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='displayFlex'>
+                                {displayNextEvolutions()}
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

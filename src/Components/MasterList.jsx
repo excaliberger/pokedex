@@ -2,45 +2,55 @@ import { useEffect, useState } from "react";
 import { filterPokesByType, filterPokesByWeakness, getPokemonStats } from "../helpers/pokedex.helpers";
 import Panels from "./Panels";
 import DetailWindow from './DetailWindow';
-
-
+import SearchBar from './SearchBar'
 
 function MasterList({ list }) {
 
-    let [selectedPokemon, setSelectedPokemon] = useState({})
+    console.log("first list", list);
 
-    // useEffect(() => {
-        // console.log(selectedPokemon);
-    // })
+    let [selectedPokemon, setSelectedPokemon] = useState({});
+    let [filteredList, setFilteredList] = useState([]);
 
     function setStateOnClick(singlePokemon) {
-        console.log(list);
+        console.log("setStateOnClick",list);
         setSelectedPokemon(singlePokemon);
     }
 
     function setStateAndDisplayDetails(pokemonIndex) {
+        console.log("pokemon index", pokemonIndex);
         setStateOnClick(list.pokemon[pokemonIndex]);
         displayDetails(list.pokemon[pokemonIndex]);
     }
 
-    function displayDetails(singlePokemon) {
-
+    function displaySearchBar(){
         return (
+            <div>
+                <SearchBar
+                    className='displayFlex'
+                    list={list}
+                    onChange={setFilteredList} 
+                    />
+            </div>
+        )
+    }
+
+    function displayDetails(singlePokemon) {
+        return singlePokemon.id ?  (
                 <div className="primaryInfoPadding">
+                    {console.log(singlePokemon)}
                     <DetailWindow 
                         {...singlePokemon}
                         setStateAndDisplayDetails={setStateAndDisplayDetails}
                     />
                 </div>
-
-            )
+                ) : <></>
         }
     
     function renderList(list) {
         return list && list.pokemon && list.pokemon.map((singlePokemon) => {
             return (
-                <div className="panel" onClick={() => setStateAndDisplayDetails(singlePokemon.id-1)} > 
-                    <li key={singlePokemon.id}>
+                <div key={singlePokemon.id} className="panel" onClick={() => setStateAndDisplayDetails(singlePokemon.id-1)} > 
+                    <li>
                         <Panels img={singlePokemon.img} weaknesses={singlePokemon.weaknesses} name={singlePokemon.name} type={singlePokemon.type} num={singlePokemon.num} />
                     </li>
                 </div>
@@ -49,14 +59,21 @@ function MasterList({ list }) {
     }; 
 
     return (
-        <div className="alignCenter">
-            <div id="pokedexMasterListContainer">
-                <ul>
-                    {renderList(list)}
-                </ul>
+        <div className="displayBlock">
+            <div>
+                <div>
+                    {displaySearchBar()}
+                </div>
             </div>
-            <div className="flexStart" id="detailWindowContainer">
-                {displayDetails(selectedPokemon)}
+            <div className="displayFlex">
+                <div id="pokedexMasterListContainer">
+                    <ul>
+                        {renderList(list)}
+                    </ul>
+                </div>
+                <div className="flexStart" id="detailWindowContainer">
+                    {displayDetails(selectedPokemon)}
+                </div>
             </div>
         </div>)
 }

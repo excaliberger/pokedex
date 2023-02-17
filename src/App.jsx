@@ -1,19 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import './global.css'
-// import SearchCriteria from './Components/SearchCriteria';
 import MasterList from './Components/MasterList';
 import { useEffect, useState } from 'react';
-import { getPokemonStats, filterPokesByType, filterPokesByWeakness} from './helpers/pokedex.helpers'
 
-function App(props) {
+function App() {
 
-
-  let [searchPokes, setSearchPokes] = useState("");
-  let [list, setList] = useState({ });
+  let [list, setList] = useState({});
 
   useEffect(() => {
-    setList(fetchPokes);
+    fetchPokes();
   }, [])
 
   const fetchPokes = () => {
@@ -32,16 +28,10 @@ function App(props) {
 
   return (
     <div>
-    {/* <div>
-        <div id='searchCriteriaContainer'>
-            <SearchCriteria />
-        </div>
-    </div> */}
     <div className="displayFlex">
         <div id='pokemonMasterListContainer'>
-            <MasterList list={list} />
+            {list.pokemon ? <MasterList list={list} /> : <></>}
         </div>
-
     </div> 
     </div>
   );
