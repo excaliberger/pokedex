@@ -28,7 +28,7 @@ function SearchBar ({list}) {
     }
 
     return (
-        <div>
+        <div className='flexStart'>
             <form onSubmit={onSubmit}>
                 <input
                     type="text"
