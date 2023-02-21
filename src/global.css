@@ -12,7 +12,7 @@ table {
 }
 
 tr {
-    background-color: orange;
+    background-color: white;
     margin: 25px;
 }
 
@@ -29,6 +29,10 @@ td {
     display: flex;
     margin-top:0px;
     background-color: gold;
+}
+
+.detailWindowPokemonImg {
+    width: 200px;
 }
 
 .masterListImage {
@@ -71,6 +75,10 @@ td {
 .alignCenter {
     display: flex;
     align-items: center;
+}
+
+.padding20pixels {
+    padding: 20px;
 }
 
 ul {

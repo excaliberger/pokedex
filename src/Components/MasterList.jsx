@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { filterPokesByType, filterPokesByWeakness, getPokemonStats } from "../helpers/pokedex.helpers";
+import { filterPokesByType, filterPokesByWeakness, getListOf, getPokemonStats } from "../helpers/pokedex.helpers";
 import Panels from "./Panels";
 import DetailWindow from './DetailWindow';
 import SearchBar from './SearchBar'
@@ -16,6 +16,10 @@ function MasterList({ list }) {
         setSelectedPokemon(singlePokemon);
     }
 
+    const handleChange = (event) => {
+        setFilteredList(event.target.value)
+    }
+
     function setStateAndDisplayDetails(pokemonIndex) {
         console.log("pokemon index", pokemonIndex);
         setStateOnClick(list.pokemon[pokemonIndex]);
@@ -26,9 +30,9 @@ function MasterList({ list }) {
         return (
             <div>
                 <SearchBar
-                    className='displayFlex'
+                    className='padding20pixels'
                     list={list}
-                    onChange={setFilteredList} 
+                    onChange={handleChange} 
                     />
             </div>
         )
@@ -57,6 +61,10 @@ function MasterList({ list }) {
             )
         })
     }; 
+
+    filterPokesByType(list, filteredList);
+    filterPokesByWeakness(list, filteredList);
+    renderList(filteredList);
 
     return (
         <div className="displayBlock">

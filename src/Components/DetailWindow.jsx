@@ -45,7 +45,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
         <div className='flexStart' id='detailWindowContainer'>
             <div>
                 <div>
-                    <img src={img} />
+                    <img className="detailWindowPokemonImg" src={img} />
                 </div>
                 <div>
                     <table>
@@ -90,6 +90,14 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                                 <p>{displayWeaknesses()}</p>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <p>egg:</p>
+                            </td>
+                            <td>
+                                <p>{egg}</p>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -119,14 +127,6 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num}) {
                         </td>
                         <td>
                             <p>{candy_count}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>egg:</p>
-                        </td>
-                        <td>
-                            <p>{egg}</p>
                         </td>
                     </tr>
                     </tbody>
