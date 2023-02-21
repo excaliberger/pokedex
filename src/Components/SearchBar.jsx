@@ -38,28 +38,24 @@ function SearchBar ({list}) {
                     onChange={(event) => setSearchCriteria(event.target.value)}>
                 </input>
                 <button type="submit">Submit</button>
-                <form>
-                    <label htmlFor="searchTypes">Filter By Type</label>
-                    <select
-                        name="searchTypes"
-                        id="searchTypes"
-                        value={types}
-                        onChange={(e) => setSearchCriteria(e.target.value)}
-                    >
-                    {renderTypes()}
-                    </select>
-                </form>
-                <form>
-                    <label htmlFor="searchWeaknesses">Filter By Weakness</label>
-                    <select
-                        name="searchWeaknesses"
-                        id="searchWeaknesses"
-                        value={types}
-                        onChange={(e) => setSearchCriteria(e.target.value)}
-                    >
-                    {renderTypes()}
-                    </select>
-                </form>
+                <label htmlFor="searchTypes">Filter By Type</label>
+                <select
+                    name="searchTypes"
+                    id="searchTypes"
+                    value={types}
+                    onChange={(e) => setSearchCriteria(e.target.value)}
+                >
+                {renderTypes()}
+                </select>
+                <label htmlFor="searchWeaknesses">Filter By Weakness</label>
+                <select
+                    name="searchWeaknesses"
+                    id="searchWeaknesses"
+                    value={types}
+                    onChange={(e) => setSearchCriteria(e.target.value)}
+                >
+                {renderTypes()}
+                </select>
             </form>
         </div>
     )
