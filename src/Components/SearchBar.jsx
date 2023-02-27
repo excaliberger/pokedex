@@ -1,60 +1,76 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getListOf } from '../helpers/pokedex.helpers';
 
 
-function SearchBar ({list}) {
+function SearchBar ({list, searchCriteria, setSearchCriteria}) {
 
-    let [searchCriteria, setSearchCriteria] = useState("")
     let types = getListOf(list, "type")
 
-    function onSubmit(event) {
-        event.preventDefault();
-        console.log("hello");
-        console.log(searchCriteria, list);
-        let newList = [...list, searchCriteria];
-        setSearchCriteria(newList);
-      }
-
-
-    function renderTypes() {
-        console.log("types", types);
-        return list && types.map((type, idx) => {
-            return (
-              <option key={type + idx} value={type}>
-                {type}
-              </option>
-            );
-        })
+    function renderTypes(criteriaSlot) {
+        return ( 
+            <>
+            <option></option>
+            {list && list.pokemon && types.map((type, idx) => {
+                if (type === searchCriteria[criteriaSlot]) {
+                    return (
+                    <>
+                        <option key={type + idx + "true"} value={type}>
+                            {type}
+                        </option>
+                    </>
+                );} else {
+                    return (
+                    <>
+                        <option key={type + idx} value={type}>
+                            {type}
+                        </option>
+                    </>)
+                    
+                }
+            })}</>)
     }
 
     return (
-        <div className='flexStart'>
-            <form onSubmit={onSubmit}>
+        <div>
+            <form>
                 <input
+                    className='marginRight10px inputBox'
                     type="text"
                     name="text"
                     id="text"
-                    value="Search Pokemon"
-                    onChange={(event) => setSearchCriteria(event.target.value)}>
+                    placeholder='Search Pokemon'
+                    onChange={(event) =>   {                        
+                        let newSearchCriteria = searchCriteria;
+                        newSearchCriteria[0] = event.target.value; 
+                        setSearchCriteria([...newSearchCriteria])}}>
                 </input>
-                <button type="submit">Submit</button>
-                <label htmlFor="searchTypes">Filter By Type</label>
+                <label htmlFor="searchTypes" className='marginRight6px'>Filter By Type</label>
                 <select
+                    className='marginRight10px dropdownMenu'
                     name="searchTypes"
                     id="searchTypes"
-                    value={types}
-                    onChange={(e) => setSearchCriteria(e.target.value)}
-                >
-                {renderTypes()}
+                    value={searchCriteria[1]}
+                    onChange={(event) => {
+                        let newSearchCriteria = searchCriteria;
+                        newSearchCriteria[1] = event.target.value; 
+                        setSearchCriteria([...newSearchCriteria]);
+                    }}
+                >   
+                {renderTypes(1)}
                 </select>
-                <label htmlFor="searchWeaknesses">Filter By Weakness</label>
+                <label htmlFor="searchWeaknesses" className='marginRight6px'>Filter By Weakness</label>
                 <select
+                    className='marginRight10px dropdownMenu'
                     name="searchWeaknesses"
                     id="searchWeaknesses"
-                    value={types}
-                    onChange={(e) => setSearchCriteria(e.target.value)}
-                >
-                {renderTypes()}
+                    value={searchCriteria[2]}
+                    onChange={(event) => {
+                        let newSearchCriteria = searchCriteria;
+                        newSearchCriteria[2] = event.target.value; 
+                        setSearchCriteria([...newSearchCriteria]);
+                    }}
+                > 
+                {renderTypes(2)}
                 </select>
             </form>
         </div>

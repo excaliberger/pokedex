@@ -1,12 +1,22 @@
-export function filterPokesByType(list, type) {
-    if (type) return list.pokemon.filter((pokemon) => pokemon.type === type);
+export function filterPokesByTypeAndWeakness(list, type, style) {
+    if (type) return list.filter((pokemon) => {
+      let found = false;
+      pokemon[style].forEach((singleType) => {
+        if (singleType == type) {
+          found = true;
+        }
+      });
+      return found;
+    });
     else return list;
   }
 
-export function filterPokesByWeakness(list, weakness) {
-    if (weakness) return list.pokemon.filter((pokemon) => pokemon.weakness === weakness);
+  export function filterPokesByName(list, name) {
+    if (name) return list.filter((pokemon) => {
+      return pokemon.name.toLowerCase().includes(name);
+    });
     else return list;
-}
+  }
 
 export function getListOf(list, prop) {
   let alltypes=[]

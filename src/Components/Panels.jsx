@@ -1,50 +1,43 @@
 import { useEffect, useState } from 'react';
-import { getPokemonStats, filterPokesByType, filterPokesByWeakness} from '../helpers/pokedex.helpers'
+import { filterPokesByTypeAndWeakness } from '../helpers/pokedex.helpers'
 
 
-function Panels({ id, name, type, num, img, weaknesses }) {
+function Panels({ id, name, type, num, img, weaknesses, searchCriteria, setSearchCriteria }) {
 
-    function displayWeaknesses() {
-        return weaknesses.join(", ")
+
+    function displayTypeIcons(types) {
+        return types.map((type, index) => {
+            const typeImage = require(`../img/${type}.gif`); 
+            return (
+                <img onclick={(event) => {
+                    
+                }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
+            )
+        });
     }
 
-    function displayType() {
-        if (type[1]) {
+
+
+    function displayPanel() {
             return (
                 <div  className="displayFlex">
-                    <div className='flexStart'><h2 className=''>{num}</h2></div>
+                    <div ><h1 className='flexStart'>{num}</h1></div>
                     <div className='displayFlex'>                
                         <img className='masterListImage' src={img} />
                     </div>
                     <div className='primaryInfoPadding'>
-                        <p>Name: {name}</p>
-                        <p>Type:<br/> {type[0]}/{type[1]}</p>
-                        <p>Weaknesses: <br/> {displayWeaknesses()}</p>
+                        <h2>{name}</h2>
+                        <p>{displayTypeIcons(type)}</p>
+                        <p>Weaknesses: <br/>{displayTypeIcons(weaknesses)}</p>
                     </div>
                 </div>)
-        } else if (type[1] === undefined) {
-            return (
-                <div  className="displayFlex flexEnd">
-                    <div className='flexStart'><h2>{num}</h2></div>
-                    <div className='displayFlex'>                
-                        <img className='masterListImage' src={img} />
-                    </div>
-                    <div className='primaryInfoPadding'>
-                        <p>Name: {name}</p>
-                        <p>Type: <br/>{type}</p>
-                        <p>Weaknesses: <br/> {displayWeaknesses()}</p>
-                    </div>
-                </div>
-            )
-            
-        }
     }
    
 
     return (
         <div>
             <div>
-                {displayType()}
+                {displayPanel()}
             </div>
         </div>
     )

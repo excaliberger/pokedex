@@ -1,38 +1,41 @@
 import { useEffect, useState } from "react";
-import { filterPokesByType, filterPokesByWeakness, getListOf, getPokemonStats } from "../helpers/pokedex.helpers";
+import { filterPokesByName, filterPokesByTypeAndWeakness, getListOf, getPokemonStats } from "../helpers/pokedex.helpers";
 import Panels from "./Panels";
 import DetailWindow from './DetailWindow';
 import SearchBar from './SearchBar'
 
 function MasterList({ list }) {
 
-    console.log("first list", list);
 
     let [selectedPokemon, setSelectedPokemon] = useState({});
     let [filteredList, setFilteredList] = useState([]);
+    let [searchCriteria, setSearchCriteria] = useState(["","",""])
+
 
     function setStateOnClick(singlePokemon) {
-        console.log("setStateOnClick",list);
         setSelectedPokemon(singlePokemon);
     }
 
-    const handleChange = (event) => {
-        setFilteredList(event.target.value)
-    }
+    useEffect(() => {
+        let newList = filterPokesByTypeAndWeakness(list.pokemon, searchCriteria[1], "type");
+        newList = filterPokesByTypeAndWeakness(newList, searchCriteria[2], "weaknesses");
+        newList = filterPokesByName(newList, searchCriteria[0]);
+        setFilteredList(newList);
+
+    }, [searchCriteria]);
 
     function setStateAndDisplayDetails(pokemonIndex) {
-        console.log("pokemon index", pokemonIndex);
         setStateOnClick(list.pokemon[pokemonIndex]);
         displayDetails(list.pokemon[pokemonIndex]);
     }
 
     function displaySearchBar(){
         return (
-            <div>
+            <div className='padding20pixels' id='searchCriteriaContainer'>
                 <SearchBar
-                    className='padding20pixels'
                     list={list}
-                    onChange={handleChange} 
+                    searchCriteria={searchCriteria}
+                    setSearchCriteria={setSearchCriteria}
                     />
             </div>
         )
@@ -41,33 +44,40 @@ function MasterList({ list }) {
     function displayDetails(singlePokemon) {
         return singlePokemon.id ?  (
                 <div className="primaryInfoPadding">
-                    {console.log(singlePokemon)}
                     <DetailWindow 
+                        list={list}
+                        filteredList={filteredList}
+                        setFilteredList={setFilteredList}
                         {...singlePokemon}
                         setStateAndDisplayDetails={setStateAndDisplayDetails}
+                        searchCriteria={searchCriteria}
+                        setSearchCriteria={setSearchCriteria}
                     />
                 </div>
                 ) : <></>
         }
     
     function renderList(list) {
-        return list && list.pokemon && list.pokemon.map((singlePokemon) => {
+        return list && list.pokemon && filteredList.map((singlePokemon) => {
             return (
                 <div key={singlePokemon.id} className="panel" onClick={() => setStateAndDisplayDetails(singlePokemon.id-1)} > 
                     <li>
-                        <Panels img={singlePokemon.img} weaknesses={singlePokemon.weaknesses} name={singlePokemon.name} type={singlePokemon.type} num={singlePokemon.num} />
+                        <Panels searchCriteria={searchCriteria}
+                                setSearchCriteria={setSearchCriteria} 
+                                img={singlePokemon.img} 
+                                weaknesses={singlePokemon.weaknesses}
+                                name={singlePokemon.name} 
+                                type={singlePokemon.type} 
+                                num={singlePokemon.num} />
                     </li>
                 </div>
             )
         })
     }; 
 
-    filterPokesByType(list, filteredList);
-    filterPokesByWeakness(list, filteredList);
-    renderList(filteredList);
 
     return (
-        <div className="displayBlock">
+        <div className="displayBlock bg">
             <div>
                 <div>
                     {displaySearchBar()}
