@@ -4,14 +4,27 @@ function DetailWindow ({setStateAndDisplayDetails, setSearchCriteria, searchCrit
 avg_spawns, candy, candy_count, egg, height, id, multipliers, 
 spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, setFilteredList, filteredList}) {
 
+    function displayMultipliers() {
+        if (multipliers) {
+            return multipliers.join(", ");
+        } else if (multipliers === null) {
+            return;
+        }
+        
+    }
+
     function displayPrevEvolutions() {
         return prev_evolution && prev_evolution.map((evolution) => {
             let evoIcon = require(`../img/${evolution.num}.png`)
             return (
-                    <>
-                        <img key={evolution.num} onClick={() => {setStateAndDisplayDetails(Number(evolution.num)-1)}} className=' boxShadowNone' display='block' src={evoIcon} /><br/>
+                    <div key={evolution.num}>
+                        <img onClick={() => 
+                            {setStateAndDisplayDetails(Number(evolution.num)-1)}} 
+                            className=' boxShadowNone' 
+                            display='block' 
+                            src={evoIcon} /><br/>
                         <p>{evolution.name}</p>
-                    </>
+                    </div>
             )
         })
     }
@@ -21,14 +34,14 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
         return next_evolution && next_evolution.map((evolution) => {
             let evoIcon = require(`../img/${evolution.num}.png`)
             return (
-                    <>
-                        <img key={evolution.num} onClick={() => {
+                    <div key={evolution.num}>
+                        <img onClick={() => {
                             setStateAndDisplayDetails(Number(evolution.num)-1)}}
                             className='boxShadowNone'
                             display='block'
                             src={evoIcon} /><br/>
                         <p>{evolution.name}</p>
-                    </>
+                    </div>
             )
         })
     }
@@ -39,11 +52,10 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
             return (
                 <img key={`${type}icon`}
                     onClick={(event) => {
-                        console.log(type);
                         let newSearchCriteria = searchCriteria;
                         newSearchCriteria[1] = type;
+                        newSearchCriteria[2] = "";
                         setSearchCriteria([...newSearchCriteria]);
-                        console.log(searchCriteria);
                     }
 
                     }
@@ -62,6 +74,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                         console.log(type);
                         let newSearchCriteria = searchCriteria;
                         newSearchCriteria[2] = type;
+                        newSearchCriteria[1] = "";
                         setSearchCriteria([...newSearchCriteria]);
                         console.log(searchCriteria);
                     }
@@ -148,7 +161,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                                     <p>Multipliers:</p>
                                 </td>
                                 <td className='detailInfoTd  boxShadow'>
-                                    <p>{multipliers}</p>
+                                    <p>{displayMultipliers(multipliers)}</p>
                                 </td>
                             </tr>
                             <tr className='boxShadowNone fakeTr'></tr>
