@@ -13,18 +13,15 @@ function SearchBar ({list, searchCriteria, setSearchCriteria}) {
             {list && list.pokemon && types.map((type, idx) => {
                 if (type === searchCriteria[criteriaSlot]) {
                     return (
-                    <>
                         <option key={type + idx + "true"} value={type}>
                             {type}
                         </option>
-                    </>
                 );} else {
                     return (
-                    <>
                         <option key={type + idx} value={type}>
                             {type}
                         </option>
-                    </>)
+                    )
                     
                 }
             })}</>)
