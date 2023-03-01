@@ -89,7 +89,7 @@ function MasterList({ list }) {
                         {renderList(list)}
                     </ul>
                 </div>
-                <div className="flexStart bg" id="detailWindowContainer">
+                <div className="flexStart" id="detailWindowContainer">
                     {displayDetails(selectedPokemon)}
                 </div>
             </div>

@@ -9,43 +9,13 @@ function Panels({ id, name, type, num, img, weaknesses, searchCriteria, setSearc
             const typeImage = require(`../img/${type}.gif`); 
             return (
                 <img onClick={(event) => {
-                    let newSearchCriteria = searchCriteria;
-                    newSearchCriteria = ["","",""]; 
+                    let newSearchCriteria = searchCriteria; 
                     newSearchCriteria[position] = type;
                     setSearchCriteria([...newSearchCriteria]);
                 }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
             )
         });
     }
-
-    // function displayTypeIcons(types) {
-    //     return types.map((type, index) => {
-    //         const typeImage = require(`../img/${type}.gif`); 
-    //         return (
-    //             <img onClick={(event) => {
-    //                 let newSearchCriteria = searchCriteria;
-    //                 newSearchCriteria[1] = type;
-    //                 newSearchCriteria[2] = "";
-    //                 setSearchCriteria([...newSearchCriteria]);
-    //             }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
-    //         )
-    //     });
-    // }
-
-    // function displayWeaknessIcons(types) {
-    //     return types.map((type, index) => {
-    //         const typeImage = require(`../img/${type}.gif`); 
-    //         return (
-    //             <img onClick={(event) => {
-    //                 let newSearchCriteria = searchCriteria;
-    //                 newSearchCriteria[2] = type;
-    //                 newSearchCriteria[1] = "";
-    //                 setSearchCriteria([...newSearchCriteria]);
-    //             }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
-    //         )
-    //     });
-    // }
-
 
     function displayPanel() {
             return (

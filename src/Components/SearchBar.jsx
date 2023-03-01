@@ -27,6 +27,13 @@ function SearchBar ({list, searchCriteria, setSearchCriteria}) {
             })}</>)
     }
 
+    function clearSearch(click) {
+        click.preventDefault();
+        let clearedSearchCriteria = searchCriteria;
+        clearedSearchCriteria = ["","",""];
+        setSearchCriteria(clearedSearchCriteria);
+    }
+
     return (
         <div>
             <form>
@@ -69,6 +76,7 @@ function SearchBar ({list, searchCriteria, setSearchCriteria}) {
                 > 
                 {renderTypes(2)}
                 </select>
+                <button className="clearBtn" onSubmit={() => {clearSearch()}}>Clear</button>
             </form>
         </div>
     )

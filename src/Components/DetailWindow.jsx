@@ -20,9 +20,9 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                     <div key={evolution.num}>
                         <img onClick={() => 
                             {setStateAndDisplayDetails(Number(evolution.num)-1)}} 
-                            className=' boxShadowNone' 
-                            display='block' 
-                            src={evoIcon} /><br/>
+                            className='boxShadowNone' 
+                            display='flex' 
+                            src={evoIcon} />
                         <p>{evolution.name}</p>
                     </div>
             )
@@ -38,50 +38,23 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                         <img onClick={() => {
                             setStateAndDisplayDetails(Number(evolution.num)-1)}}
                             className='boxShadowNone'
-                            display='block'
-                            src={evoIcon} /><br/>
+                            display='flex'
+                            src={evoIcon} />
                         <p>{evolution.name}</p>
                     </div>
             )
         })
     }
 
-    function displayTypesIcons(types) {
-        return types.map((type) => {
-            const typeImage = require(`../img/${type}.gif`);
+    function displayTypeIcons(types, position) {
+        return types.map((type, index) => {
+            const typeImage = require(`../img/${type}.gif`); 
             return (
-                <img key={`${type}icon`}
-                    onClick={(event) => {
-                        let newSearchCriteria = searchCriteria;
-                        newSearchCriteria[1] = type;
-                        newSearchCriteria[2] = "";
-                        setSearchCriteria([...newSearchCriteria]);
-                    }
-
-                    }
-                    className='largerTypeImages'
-                    src={typeImage}/>
-            )
-        });
-    }
-
-    function displayWeaknessIcons(types) {
-        return types.map((type) => {
-            const typeImage = require(`../img/${type}.gif`);
-            return (
-                <img key={`${type}icon`}
-                    onClick={(event) => {
-                        console.log(type);
-                        let newSearchCriteria = searchCriteria;
-                        newSearchCriteria[2] = type;
-                        newSearchCriteria[1] = "";
-                        setSearchCriteria([...newSearchCriteria]);
-                        console.log(searchCriteria);
-                    }
-
-                    }
-                    className='largerTypeImages'
-                    src={typeImage}/>
+                <img onClick={(event) => {
+                    let newSearchCriteria = searchCriteria; 
+                    newSearchCriteria[position] = type;
+                    setSearchCriteria([...newSearchCriteria]);
+                }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
             )
         });
     }
@@ -147,7 +120,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                                     <p>Type:</p>
                                 </td>
                                 <td className='detailInfoTd boxShadow'>
-                                    <p className='displayFlex'>{displayTypesIcons(type)}</p>
+                                    <p className='displayFlex'>{displayTypeIcons(type)}</p>
                                 </td>
                                 <td className='boxShadowNone fakeTd'></td>
                                 <td className='detailNameTd boxShadow'>
@@ -187,7 +160,7 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                                 </td>
                                 <td className='detailInfoTd boxShadow'>
                                     <p className='displayFlex'>
-                                        {displayWeaknessIcons(weaknesses)}
+                                        {displayTypeIcons(weaknesses)}
                                     </p>
                                 </td>
                                 <td className='boxShadowNone fakeTd'></td>
