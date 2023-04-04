@@ -67,110 +67,144 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                     <img className="detailWindowPokemonImg" src={img} />
                 </div>
                 <div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Name:</p>
-                                </td>
-                                <td className='detailInfoTd  boxShadow'>
-                                    <p>{name}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd  boxShadow'>
-                                    <p>Weight:</p>
-                                </td>
-                                <td className='detailInfoTd  boxShadow'>
-                                    <p>{weight}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Average spawns:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                <p>{avg_spawns}</p>
-                                </td>
-                            </tr>
-                            <tr className='boxShadowNone fakeTr'></tr>
-                            <tr>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Height:</p>
-                                </td>
-                                <td className='detailInfoTd  boxShadow'>
-                                    <p>{height}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Candy:</p>
-                                </td>
-                                <td className='detailInfoTd  boxShadow'>
-                                    <p>{candy}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Candy Count:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p>{candy_count}</p>
-                                </td>
-                            </tr>
-                            <tr className='boxShadowNone fakeTr'></tr>
-                            <tr>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Type:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p className='displayFlex'>{displayTypeIcons(type)}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Spawn Time:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p>{spawn_time}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Multipliers:</p>
-                                </td>
-                                <td className='detailInfoTd  boxShadow'>
-                                    <p>{displayMultipliers(multipliers)}</p>
-                                </td>
-                            </tr>
-                            <tr className='boxShadowNone fakeTr'></tr>
-                            <tr>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Spawn Chance:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p>{spawn_chance}</p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Egg:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p>{egg}</p>
-                                </td>
-                            </tr>
-                            <tr className='boxShadowNone fakeTr'></tr>
-                            <tr>
-                                <td className='detailNameTd boxShadow'>
-                                    <p>Weaknesses:</p>
-                                </td>
-                                <td className='detailInfoTd boxShadow'>
-                                    <p className='displayFlex'>
-                                        {displayTypeIcons(weaknesses)}
-                                    </p>
-                                </td>
-                                <td className='boxShadowNone fakeTd'></td>
+                    <div className="displayFlex">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Name:</p>
+                                    </td>
+                                    <td className='detailInfoTd  boxShadow'>
+                                        <p>{name}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Height:</p>
+                                    </td>
+                                    <td className='detailInfoTd  boxShadow'>
+                                        <p>{height}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Type:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p className='displayFlex'>{displayTypeIcons(type)}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Weaknesses:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p className='displayFlex'>
+                                            {displayTypeIcons(weaknesses)}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="displayFlex">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd  boxShadow'>
+                                        <p>Weight:</p>
+                                    </td>
+                                    <td className='detailInfoTd  boxShadow'>
+                                        <p>{weight}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Average spawns:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                    <p>{avg_spawns}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Candy:</p>
+                                    </td>
+                                    <td className='detailInfoTd  boxShadow'>
+                                        <p>{candy}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Candy Count:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p>{candy_count}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Spawn Time:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p>{spawn_time}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Multipliers:</p>
+                                    </td>
+                                    <td className='detailInfoTd  boxShadow'>
+                                        <p>{displayMultipliers(multipliers)}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="displayFlex">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Spawn Chance:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p>{spawn_chance}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='detailNameTd boxShadow'>
+                                        <p>Egg:</p>
+                                    </td>
+                                    <td className='detailInfoTd boxShadow'>
+                                        <p>{egg}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
                                 <td className='detailNameTd boxShadow'>
                                     <p>Previous Evolution:</p>
                                 </td>
                                 <td className='displayFlex'>
                                     {displayPrevEvolutions()}
                                 </td>
-                                <td className='boxShadowNone fakeTd'></td>
+                                </tr>
+                                <tr>
                                 <td className='detailNameTd boxShadow'>
                                     <p>Next Evolution:</p>
                                 </td>
@@ -178,8 +212,9 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
                                     {displayNextEvolutions()}
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>   
