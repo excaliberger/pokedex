@@ -27,9 +27,9 @@ function App() {
   }
 
   return (
-    <div className='bg'>
-    <div className="displayFlex">
-        <div id='pokemonMasterListContainer'>
+    <div>
+    <div className="displayBlock">
+        <div>
             {list.pokemon ? <MasterList list={list} /> : <></>}
         </div>
     </div> 

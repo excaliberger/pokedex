@@ -83,8 +83,8 @@ function MasterList({ list }) {
                     {displaySearchBar()}
                 </div>
             </div>
-            <div className="flexStart">
-                <div id="pokedexMasterListContainer">
+            <div className="displayBlock panelScrollContainer">
+                <div id="panelScroll">
                     <ul>
                         {renderList(list)}
                     </ul>
