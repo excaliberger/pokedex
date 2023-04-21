@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { filterPokesByName, filterPokesByTypeAndWeakness, getListOf, getPokemonStats } from "../helpers/pokedex.helpers";
+import { filterPokesByName, filterPokesByTypeAndWeakness } from "../helpers/pokedex.helpers";
 import Panels from "./Panels";
 import DetailWindow from './DetailWindow';
 import SearchBar from './SearchBar'
