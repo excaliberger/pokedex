@@ -9,11 +9,9 @@ function Panels({ id, name, type, num, img, weaknesses, searchCriteria, setSearc
             const typeImage = require(`../img/${type}.gif`); 
             return (
                 <img onClick={(event) => {
-                    console.log("this works")
                     let newSearchCriteria = searchCriteria; 
                     newSearchCriteria[position] = type;
                     setSearchCriteria([...newSearchCriteria]);
-                    console.log(searchCriteria);
                 }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
             )
         });

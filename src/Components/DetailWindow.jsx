@@ -51,11 +51,9 @@ spawn_chance, spawn_time, weight, next_evolution, prev_evolution, num, list, set
             const typeImage = require(`../img/${type}.gif`); 
             return (
                 <img onClick={(event) => {
-                    console.log("this doesnt work");
                     let newSearchCriteria = searchCriteria; 
                     newSearchCriteria[position] = type;
                     setSearchCriteria([...newSearchCriteria]);
-                    console.log(searchCriteria);
                 }} key={`${index}icon`} className='panelTypeImages displayflex' src={typeImage}/>
             )
         });
